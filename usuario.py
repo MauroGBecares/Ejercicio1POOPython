@@ -53,9 +53,22 @@ class Usuario(Persona):
     
     def validar_credenciales(self, usuario: str, password: str) -> bool:
          return self.user_name == usuario and self.password == password
-    
+
     def baja_usuario(self) -> None:
         self.estado = False
         self.fecha_baja = date.today()
 
+    def agregar_libro(self, nuevo_libro: object) -> str:
+        self.__libros.append(nuevo_libro)
+        return f"El libro {nuevo_libro} se agrego exitosamente !"
+
+    def quitar_libro(self, libro: object) -> str:
+        self.__libros.pop(libro)
+        return f"El libro {libro} se borro exitosamente !"
+    
+    def leyo_libro(self, nombre: str) -> bool:
+        for libro in self.__libros:
+            if libro.nombre == nombre:
+                return True        
+        return False
         
